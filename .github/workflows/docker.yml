@@ -1,0 +1,29 @@
+name: Docker
+
+on:
+  pull_request:
+
+env:
+  IMAGE_NAME: rinnegan-postgres
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build the image
+        run: |
+          docker-compose build --compress
+
+  push:
+    runs-on: ubuntu-20.04
+
+    needs: build
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Log into registry
+        run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin

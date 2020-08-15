@@ -12,8 +12,8 @@ networks:
 
 services:
   postgres:
-    container_name: rinnegan_postgres
-    image: rinnegan-postgres:latest
+    container_name: rinnegan-postgres
+    image: rinnegan-postgres
     env_file:
       - .env
     expose:
