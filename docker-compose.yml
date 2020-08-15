@@ -1,0 +1,26 @@
+version: "3.7"
+
+volumes:
+  data:
+    external: true
+    name: rinnegan-data
+
+networks:
+  backend:
+    external: true
+    name: rinnegan-backend
+
+services:
+  postgres:
+    container_name: rinnegan_postgres
+    image: rinnegan-postgres:latest
+    env_file:
+      - .env
+    expose:
+      - 5432
+    networks:
+      - backend
+    volumes:
+      - data:/var/lib/postgresql/data
+    build:
+      context: .
