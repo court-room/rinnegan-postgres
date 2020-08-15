@@ -32,7 +32,7 @@ jobs:
 
       - name: Tag and push the image
         run: |
-          BRANCH=echo ${{ steps.branch.output.short_ref }}
+          BRANCH=${{ steps.branch.output.short_ref }}
           NEW_IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/$IMAGE_NAME:$BRANCH
 
           docker tag $IMAGE_NAME $NEW_IMAGE_NAME
