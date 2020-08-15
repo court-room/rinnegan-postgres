@@ -16,25 +16,24 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      - name: Build the image
-        run: |
-          docker build --compress --tag rinnegan-postgres .
-
-      - name: Log into registry
-        run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
-
-      # - name: Get branch name
-      #   id: branch
+      - name: Build and push the image
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+          repository: ${{ secrets.DOCKERHUB_USERNAME }}/rinnegan-postgres
+          tag_with_ref: true
+      # - name: Build the image
       #   run: |
-      #     echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
-
-      - name: Tag and push the image
-        run: |
-          BRANCH=$(echo "${{ github.head_ref }}")
-          NEW_IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/$IMAGE_NAME:$BRANCH
-
-          docker tag $IMAGE_NAME $NEW_IMAGE_NAME
-
-          docker push $NEW_IMAGE_NAME
+      #     docker build --compress --tag rinnegan-postgres .
+      # - name: Log into registry
+      #   run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+      # - name: Tag and push the image
+      #   run: |
+      #     BRANCH=$(echo "${{ github.head_ref }}")
+      #     NEW_IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/$IMAGE_NAME:$BRANCH
+      #     docker tag $IMAGE_NAME $NEW_IMAGE_NAME
+      #     docker push $NEW_IMAGE_NAME
