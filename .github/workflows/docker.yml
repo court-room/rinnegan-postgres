@@ -25,14 +25,14 @@ jobs:
       - name: Log into registry
         run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
 
-      - name: Get branch name
-        id: branch
-        run: |
-          echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
+      # - name: Get branch name
+      #   id: branch
+      #   run: |
+      #     echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
 
       - name: Tag and push the image
         run: |
-          BRANCH=`echo ${{ steps.branch.output.short_ref }}`
+          BRANCH=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
           NEW_IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/$IMAGE_NAME:$BRANCH
 
           docker tag $IMAGE_NAME $NEW_IMAGE_NAME
