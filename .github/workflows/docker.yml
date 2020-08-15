@@ -27,7 +27,7 @@ jobs:
 
       - name: Tag and push the image
         run: |
-          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+          VERSION=$(echo "${{ github.ref }}" | cut -d'/' -f 3)
           NEW_IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/$IMAGE_NAME:$VERSION
 
           docker tag $IMAGE_NAME $NEW_IMAGE_NAME
