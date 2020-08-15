@@ -32,7 +32,7 @@ jobs:
 
       - name: Tag and push the image
         run: |
-          BRANCH=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+          BRANCH=$(echo "${{ github.head_ref }}" | sed -e 's,.*/\(.*\),\1,')
           NEW_IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/$IMAGE_NAME:$BRANCH
 
           docker tag $IMAGE_NAME $NEW_IMAGE_NAME
