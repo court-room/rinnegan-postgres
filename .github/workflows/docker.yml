@@ -25,13 +25,11 @@ jobs:
       - name: Log into registry
         run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
 
-      - name: Tag the image
+      - name: Tag and push the image
         run: |
           VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
           NEW_IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/$IMAGE_NAME:$VERSION
 
           docker tag $IMAGE_NAME $NEW_IMAGE_NAME
 
-      - name: Push the image to DockerHub
-        run: |
           docker push $NEW_IMAGE_NAME
