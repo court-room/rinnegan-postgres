@@ -2,10 +2,7 @@
 
 ## Pre-Requisite
 
-If you have not setup the dev environment using [rinnegan-platform-setup](https://github.com/court-room/rinnegan-platform-setup),
-then you need to run the following commands in order for the databse to work.
-
-**This is not ideal, and things might break. It is advised to setup the platform using the above link**
+Run the following commands for setting up the dependencies of your database
 
 - Create a network with the given name
 
