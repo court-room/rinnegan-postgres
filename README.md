@@ -1,5 +1,8 @@
 # rinnegan-postgres
 
+[![docker Actions Status](https://github.com/court-room/rinnegan-postgres/workflows/docker/badge.svg)](https://github.com/court-room/rinnegan-postgres/actions)
+[![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/court-room/rinnegan-postgres/?ref=repository-badge)
+
 ## Pre-Requisite
 
 Run the following commands for setting up the dependencies of your database
