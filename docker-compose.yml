@@ -14,6 +14,7 @@ services:
   postgres:
     container_name: rinnegan-postgres
     image: rinnegan-postgres
+    command: ["postgres", "-c", "config_file=/etc/postgresql/postgresql.conf"]
     env_file:
       - .env
     expose:
@@ -21,6 +22,6 @@ services:
     networks:
       - backend
     volumes:
-      - data:/var/lib/postgresql/data
+      - rinnegan-data:/var/lib/postgresql/data
     build:
       context: .
