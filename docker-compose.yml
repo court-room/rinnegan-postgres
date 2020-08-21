@@ -8,7 +8,7 @@ volumes:
 networks:
   backend:
     external: true
-    name: rinnegan-backend
+    name: rinnegan-database
 
 services:
   postgres:

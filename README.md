@@ -10,7 +10,7 @@ Run the following commands for setting up the dependencies of your database
 - Create a network with the given name
 
   ```bash
-  $ docker network create --attachable rinnegan-backend
+  $ docker network create --attachable rinnegan-database
   6fcd14420464df8b6e1cba8d7007d99bdad9d76126b10f413907cc64b195cb53
   ```
 
