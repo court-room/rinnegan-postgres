@@ -64,6 +64,10 @@ In order to use the database start up the container using the following commands
   Creating rinnegan_postgres ... done
   ```
 
+_OPTIONAL_
+
+There is a shell script at `bin/orchestrate.sh` that handles the container setup, and tails the logs as well.
+
 ## Development
 
 - In order to verify that the container is up
