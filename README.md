@@ -10,15 +10,13 @@ Run the following commands for setting up the dependencies of your database
 - Create a network with the given name
 
   ```bash
-  $ docker network create --attachable rinnegan-backend
-  6fcd14420464df8b6e1cba8d7007d99bdad9d76126b10f413907cc64b195cb53
+  $ docker network create --attachable rinnegan-database
   ```
 
 - Create a volume with the given name
 
   ```bash
   $ docker volume create rinnegan-data
-  rinnegan-data
   ```
 
 ## Setup
@@ -30,29 +28,6 @@ In order to use the database start up the container using the following commands
 
   ```bash
   $ docker-compose build --compress
-  Building postgres
-  Step 1/3 : FROM postgres:12.2-alpine
-  12.2-alpine: Pulling from library/postgres
-  cbdbe7a5bc2a: Pull complete
-  b52a8a2ca21a: Pull complete
-  e36a19831e31: Pull complete
-  f4dcdeed24b7: Pull complete
-  e261f2444b0a: Pull complete
-  0ff301de3ecf: Pull complete
-  1d858bf02c95: Pull complete
-  7958b7df2951: Pull complete
-  Digest: sha256:9ea72265275674225b1eaa2ae897dd244028af4ee7ef6e4e89fe474938e0992e
-  Status: Downloaded newer image for postgres:12.2-alpine
-  ---> ae192c4d3ada
-  Step 2/3 : LABEL maintainer="onlinejudge95"
-  ---> Running in e249f8f4bfec
-  Removing intermediate container e249f8f4bfec
-  ---> e75209e04a77
-  Step 3/3 : COPY ./db.sql /docker-entrypoint-initdb.d
-  ---> 6867730996b1
-
-  Successfully built 6867730996b1
-  Successfully tagged rinnegan-postgres:latest
   ```
 
 - Make sure you have a copy of `.env` file created by using `.env.example` as a template
@@ -61,8 +36,11 @@ In order to use the database start up the container using the following commands
 
   ```bash
   $ docker-compose up --detach
-  Creating rinnegan_postgres ... done
   ```
+
+_OPTIONAL_
+
+There is a shell script at `bin/orchestrate.sh` that handles the container setup, and tails the logs as well.
 
 ## Development
 
