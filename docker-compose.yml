@@ -6,9 +6,9 @@ volumes:
     name: rinnegan-data
 
 networks:
-  backend:
+  database:
     external: true
-    name: rinnegan-backend
+    name: rinnegan-database
 
 services:
   postgres:
@@ -16,10 +16,8 @@ services:
     image: rinnegan-postgres
     env_file:
       - .env
-    expose:
-      - 5432
     networks:
-      - backend
+      - database
     volumes:
       - data:/var/lib/postgresql/data
     build:
