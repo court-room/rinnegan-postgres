@@ -1,4 +1,4 @@
-FROM postgres:13.0-alpine
+FROM postgres:13.3-alpine
 
 LABEL maintainer="onlinejudge95"
 
